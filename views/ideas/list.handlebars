@@ -2,11 +2,15 @@
   <div class="card card-body mb-2">
     <h4>{{title}}</h4>
     <p>{{detail}}</p>
-    <a href="/ideas/edit/{{id}}" class="btn btn-primary btn-block mb-2">Edit</a>
-    <form action="/ideas/{{id}}?_method=DELETE" method="post">
+    <div class="row">
+      <div class="col-md-6">
+        <a href="/ideas/edit/{{id}}" class="btn btn-primary btn-block mb-2">Edit</a>
+      </div>
+    <form action="/ideas/{{id}}?_method=DELETE" method="post" class="col-md-6 ">
       <input type="hidden" name="_method" value="DELETE">
       <button class="btn btn-danger btn-block">DELETE</button>
     </form>
+  </div>
   </div>
 {{else}}
   <p>No video ideas listed!</p>

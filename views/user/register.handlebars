@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-6 mx-auto">
+    <div class="card card-body">
+      <img src="/images/logo.svg" class="logo mx-auto">
+      <h3 class="text-center mt-3">注册</h3>
+      <form action="/user/register" method="post">
+        <div class="form-group">
+          <label for="name">用户名</label>
+          <input id="name" type="text" name="name" class="form-control" required placeholder="请输入用户名" {{#if body.name}}value="{{body.name}}"{{/if}}>
+        </div>
+        <div class="form-group">
+          <label for="email">电子邮箱</label>
+          <input id="email" type="email" name="email" class="form-control" required placeholder="请输入邮箱" {{#if body.email}}value="{{body.email}}"{{/if}}>
+        </div>
+        <div class="form-group">
+          <label for="password">密码</label>
+          <input id="password" type="password" name="password" class="form-control" required placeholder="请输入6~12位长度的密码" pattern="^[a-zA-Z]\w{6,12}$" {{#if body.name}}value="{{body.password}}"{{/if}}>
+        </div>
+        <div class="form-group">
+          <label for="password_repeat">确认密码</label>
+          <input id="password_repeat" type="password" name="password_repeat" class="form-control" required placeholder="请输入6~12位长度的密码" pattern="^[a-zA-Z]\w{6,12}$" {{#if body.name}}value="{{body.password_repeat}}"{{/if}}>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block mt-5">注册</button>
+      </form>
+    </div>
+  </div>
+</div>

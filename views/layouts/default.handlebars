@@ -5,10 +5,13 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>VidJot</title>
   <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
   {{> _navbar}}
   <div class="container">
+    {{> _msg}}
+    {{> _errors}}
     {{{body}}}
   </div>
   <script src="/js/jquery.min.js"></script>

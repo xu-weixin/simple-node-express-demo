@@ -7,7 +7,8 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const mongoose = require('mongoose');
 const passport = require('passport');
-const { mongoURI } = require('./config/database');
+// const { mongoURI } = require('./config/database');
+const mongoURI = process.env.mongoURI || 'mongodb://localhost:27017/vidjot-dev';
 
 mongoose.Promise = global.Promise;
 mongoose

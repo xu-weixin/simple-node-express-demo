@@ -7,10 +7,11 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const { mongoURI } = require('./config/database');
 
 mongoose.Promise = global.Promise;
 mongoose
-  .connect('mongodb://localhost:27017/vidjot-dev')
+  .connect(mongoURI)
   .then(() => console.log('Mongodb Connected!'))
   .catch(err => console.log('Error: ', err));
 

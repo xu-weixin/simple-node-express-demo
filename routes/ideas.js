@@ -11,12 +11,17 @@ router.get('/add', ensureAuthenticated, (req, res) => {
   res.render('ideas/add');
 });
 router.get('/edit/:id', ensureAuthenticated, (req, res) => {
-  Idea.findOne({ _id: req.params.id }).then(idea => {
-    res.render('ideas/edit', { idea });
+  Idea.findOne({ _id: req.params.id, user: req.user.id }).then(idea => {
+    if (!idea) {
+      req.flash('error_msg', 'Not authorized!');
+      res.redirect('/ideas');
+    } else {
+      res.render('ideas/edit', { idea });
+    }
   });
 });
 router.get('/', ensureAuthenticated, (req, res) => {
-  Idea.find({})
+  Idea.find({ user: req.user.id })
     .sort({ date: 'desc' })
     .then(ideas => {
       res.render('ideas/list', { ideas });
@@ -35,7 +40,8 @@ router.post('/', ensureAuthenticated, (req, res) => {
   } else {
     const newUser = {
       title: req.body.title,
-      detail: req.body.detail
+      detail: req.body.detail,
+      user: req.user.id
     };
     new Idea(newUser).save().then(() => {
       req.flash('success_msg', 'Video idea added!');

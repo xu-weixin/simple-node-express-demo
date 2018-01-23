@@ -24,6 +24,15 @@ router.get('/logout', (req, res) => {
 router.get('/register', (req, res) => {
   res.render('user/register');
 });
+
+router.get('/profile', (req, res) => {
+  if (!req.user) {
+    req.flash('error_msg', '请重新登录');
+    res.redirect('/user/login');
+  } else {
+    res.render('user/profile', { body: req.user });
+  }
+});
 // 简单的鉴权
 // router.post('/login', (req, res) => {
 //   User.findOne({
@@ -55,7 +64,7 @@ router.get('/register', (req, res) => {
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
     successRedirect: '/ideas',
-    failureRedirect: '/users/login',
+    failureRedirect: '/user/login',
     failureFlash: true
   })(req, res, next);
 });
